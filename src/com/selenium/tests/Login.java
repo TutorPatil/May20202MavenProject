@@ -31,6 +31,18 @@ public class Login extends BaseClass {
 		writeResultsToFile("login_001", "Pass");				
 	}	
 	
+	@Test(dataProvider = "logndataExcel",dataProviderClass = com.selenium.dataproviders.DataProviders.class)	
+	public static void login_005(String  user, String pass) throws Exception {
+				
+		
+		Commonutils.loginToActitime(user, pass);
+
+		boolean result = driver.findElement(By.xpath(getDataFromExcelFile("locator", "Home", "Logout_Link")))
+				.isDisplayed();
+		
+		Assert.assertTrue(result, "Could not login...login_001 Failed");
+		writeResultsToFile("login_001", "Pass");				
+	}	
 	
 	
 
